@@ -4,9 +4,11 @@ Once cloned or downloaded, use npm install command in the terminal at root level
 
 ## Brief
 
+Re-factor of clothing store to use redux sagas.
+
 Create clothing store with basket to add and remove items as well as taking payments.
 
-Using React, Redux, Redux-Thunk for asynchronous action for shop data in redux, SASS, Firebase for authentication and storing shop data, Memoization for performance, stripe for payments, made components styled components and have added an animated loading spinner when the collection and collection preview pages load. Spinner can mostly be seen when refreshing collection or collection preview pages.
+Using React, Redux, redux-saga for asynchronous action for shop data in redux, Firebase for authentication and storing shop data, Memoization for performance, stripe for payments, made components styled components and have added an animated loading spinner when the collection and collection preview pages load. Spinner can mostly be seen when refreshing collection or collection preview pages.
 
 # Project Title
 
@@ -25,4 +27,4 @@ In the terminal run npm test
 
 ## Built With
 
-JavaScript, React, Redux, redux-thunk, SASS, styled components, Firebase
+JavaScript, React, Redux, redux-saga, styled components, Firebase
