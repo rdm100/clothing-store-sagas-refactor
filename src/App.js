@@ -22,20 +22,20 @@ class App extends React.Component {
 // this method returns another method: firebase.unsubscribe().
 // so when unsubscribeFromAuth() is called inside the componentWillUnmount, 
 // it now has the value of firebase.unsubscribe(), which executes, closing the session.
-    this.unsubscribeFromAuth = auth.onAuthStateChanged(async userAuth => {
-      if (userAuth) {
-        const userRef = await createUserProfileDocument(userAuth);
+    // this.unsubscribeFromAuth = auth.onAuthStateChanged(async userAuth => {
+    //   if (userAuth) {
+    //     const userRef = await createUserProfileDocument(userAuth);
 
-        userRef.onSnapshot(snapshot => {
-           setCurrentUser({
-               id: snapshot.id,
-               ...snapshot.data()
-           })
-        });
-      } else {
-        setCurrentUser(userAuth);// sets user to null
-      }
-    });
+    //     userRef.onSnapshot(snapshot => {
+    //        setCurrentUser({
+    //            id: snapshot.id,
+    //            ...snapshot.data()
+    //        })
+    //     });
+    //   } else {
+    //     setCurrentUser(userAuth);// sets user to null
+    //   }
+    // });
   }
 
   componentWillUnmount() {
