@@ -9,30 +9,15 @@ import Shop from './pages/shop/shop.jsx';
 import Header from './components/header/header.jsx';
 import SignInAndSignUp from './pages/sign-in-and-sign-up/sign-in-and-sign-up.jsx';
 import CheckOut from './pages/checkout/checkout.jsx';
+import { checkUserSession } from './redux/user/user-actions';
 
 class App extends React.Component {
 
   unsubscribeFromAuth = null;
-//async here as making request to firestore database
+  
   componentDidMount() {
-// unsubscribeFromAuth is reassigned to the return value of calling auth.onAuthStateChanged()
-// this method returns another method: firebase.unsubscribe().
-// so when unsubscribeFromAuth() is called inside the componentWillUnmount, 
-// it now has the value of firebase.unsubscribe(), which executes, closing the session.
-    // this.unsubscribeFromAuth = auth.onAuthStateChanged(async userAuth => {
-    //   if (userAuth) {
-    //     const userRef = await createUserProfileDocument(userAuth);
-
-    //     userRef.onSnapshot(snapshot => {
-    //        setCurrentUser({
-    //            id: snapshot.id,
-    //            ...snapshot.data()
-    //        })
-    //     });
-    //   } else {
-    //     setCurrentUser(userAuth);// sets user to null
-    //   }
-    // });
+    const { checkUserSession } = this.props;
+    checkUserSession();
   }
 
   componentWillUnmount() {
@@ -59,7 +44,11 @@ class App extends React.Component {
 }
 
 const mapStateToProps = createStructuredSelector({
-  currentUser: selectCurrentUser,
-})
+  currentUser: selectCurrentUser
+});
 
-export default connect(mapStateToProps, null)(App);
+const mapDispatchToProps = dispatch => ({
+  checkUserSession: () => dispatch(checkUserSession())
+});
+  
+export default connect(mapStateToProps, mapDispatchToProps)(App);
