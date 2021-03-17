@@ -1,4 +1,4 @@
-import React from 'react';
+import { useEffect } from 'react';
 import { Route } from 'react-router-dom';
 import CollectionsOverviewContainer from '../../components/collection-overview/collection-overview-container';
 import CollectionContainer from '../collection/collection-container';
@@ -6,14 +6,11 @@ import { connect } from 'react-redux';
 import { fetchCollectionsStart } from '../../redux/shop/shop-actions';
 
 
-class Shop extends React.Component {
-  componentDidMount() {
-    const { fetchCollectionsStart } = this.props;
+const Shop = ({ fetchCollectionsStart, match }) => {
+  useEffect(() => {
     fetchCollectionsStart();
-  }
+  }, [fetchCollectionsStart]);
 
-  render() {
-    const { match } = this.props;
     return ( 
       <div className='shop'>
         <Route exact path={`${match.path}`} component={CollectionsOverviewContainer} />
@@ -21,8 +18,6 @@ class Shop extends React.Component {
       </div>
       );
   }
-}
-
 
 const mapDispatchToProps = (dispatch) => ({
   fetchCollectionsStart: () => dispatch(fetchCollectionsStart())
