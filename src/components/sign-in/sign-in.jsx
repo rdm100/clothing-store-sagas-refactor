@@ -1,44 +1,35 @@
-import React, { Component } from 'react';
+import { useState } from 'react';
 import { connect } from 'react-redux';
 import FormInput from '../form-input/form-input';
 import CustomButton from '../custom-button/custom-button';
 import { SignInContainer, SignInTitle, ButtonsBarContainer } from './sign-in-styles.jsx';
 import { googleSignInStart, emailSignInStart } from '../../redux/user/user-actions';
 
-class SignIn extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { 
-        email: '',
-        password: ''
-     }
-  }
+const SignIn = ({ emailSignInStart, googleSignInStart }) => {
+  const [userCredentials, setUserCredentials] = useState({ email: '', password: '' });
+  const { email, password } = userCredentials;
 
-  handleSubmit = async (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    const { emailSignInStart } = this.props;
-    const { email, password } = this.state;
-
+    
     emailSignInStart(email, password);
   }
 
-  handleChange = (event) => {
+  const handleChange = (event) => {
     const { value, name } = event.target;
 
-    this.setState({ [name]: value });
+    setUserCredentials({ ...userCredentials, [name]: value });
   }
   
-  render() { 
-    const { googleSignInStart } = this.props;
     return ( 
       <SignInContainer>
         <SignInTitle>I already have an account</SignInTitle>
         <span>Sign in with your email and password</span>
-        <form onSubmit={this.handleSubmit}>
-          <FormInput type="email" name="email" value={this.state.email} 
-          handleChange={this.handleChange} label='email' required/>
-          <FormInput type="password" name="password" value={this.state.password} 
-          handleChange={this.handleChange} label='password' required/>
+        <form onSubmit={handleSubmit}>
+          <FormInput type="email" name="email" value={email} 
+          handleChange={handleChange} label='email' required/>
+          <FormInput type="password" name="password" value={password} 
+          handleChange={handleChange} label='password' required/>
           <ButtonsBarContainer>
             <CustomButton type='submit'> Sign in </CustomButton>
             <CustomButton type='button' onClick={googleSignInStart} isGoogleSignIn>
@@ -49,7 +40,6 @@ class SignIn extends Component {
       </SignInContainer>
      );
   }
-}
 
 const mapDispatchToProps = dispatch => ({
   googleSignInStart: () => dispatch(googleSignInStart()),
