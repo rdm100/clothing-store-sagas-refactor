@@ -31,7 +31,7 @@ const CheckOut = ({ cartItems, total }) => {
           <CheckOutItem key={cartItem.id} cartItem={cartItem} />
           )
       }
-      <TotalContainer>TOTAL: ${total}</TotalContainer>
+      <TotalContainer>TOTAL: £{total}</TotalContainer>
       <WarningContainer>
         *Please use the following test credit card for payments*
         <br/>
