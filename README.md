@@ -15,7 +15,7 @@ Using React, Redux, redux-saga for asynchronous actions, Firebase for authentica
 Clothing store
 
 
-<img src="public/images/clothing-store.png">
+<img src="/client/public/images/clothing-store.png">
 
 
 <img src="public/images/clothing-store2.png">
