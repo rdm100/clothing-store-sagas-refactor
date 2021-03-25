@@ -18,7 +18,7 @@ Clothing store
 <img src="/client/public/images/clothing-store.png">
 
 
-<img src="public/images/clothing-store2.png">
+<img src="/client/public/images/clothing-store2.png">
 
 
 ## Built With
